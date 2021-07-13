@@ -7,7 +7,7 @@ env:
   IMAGE_BASE: ghcr.io/${{ github.repository }}
 
 jobs:
-  promote:
+  chat:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,4 +16,4 @@ jobs:
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           issue-number: 1
-          body: /promote ${{ env.TAG }} dev-fss default
+          body: Hello world
