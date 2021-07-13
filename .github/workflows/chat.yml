@@ -1,0 +1,19 @@
+name: Chat
+on:
+  repository_dispatch:
+    types: [chat]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  IMAGE_BASE: ghcr.io/${{ github.repository }}
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigg chat back
+        uses: peter-evans/create-or-update-comment@v1.4.5
+        with:
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          issue-number: 1
+          body: /promote ${{ env.TAG }} dev-fss default

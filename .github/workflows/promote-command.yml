@@ -9,3 +9,9 @@ env:
 jobs:
   promote:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Dummy step
+        shell: bash
+        run: |
+          echo "Running first step of promote"
