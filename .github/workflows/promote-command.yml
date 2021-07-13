@@ -1,0 +1,11 @@
+name: Promote
+on:
+  repository_dispatch:
+    types: [promote-command]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  IMAGE_BASE: ghcr.io/${{ github.repository }}
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
