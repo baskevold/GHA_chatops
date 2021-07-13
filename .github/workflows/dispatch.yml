@@ -11,6 +11,8 @@ jobs:
         with:
           reaction-token: ${{ secrets.GITHUB_TOKEN }}
           token: ${{ secrets.GH_ACCESS_TOKEN }}
-          commands: promote
+          commands: |
+            promote
+            chat
           issue-type: issue
           reactions: false
