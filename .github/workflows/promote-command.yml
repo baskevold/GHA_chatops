@@ -19,10 +19,10 @@ jobs:
       - name: Setting variables for image, namespace and cluster
         shell: bash
         run: |
-          echo "TAG=$(echo ${{ github.event.client_payload.slash_command.args.arg1 }} | cut -c16-22)" >> $GITHUB_ENV
-          echo "IMAGE=$IMAGE_BASE:${{ github.event.client_payload.slash_command.args.arg1 }}" >> $GITHUB_ENV
-          echo "CLUSTER=${{ github.event.client_payload.slash_command.args.arg2 }}" >> $GITHUB_ENV
-          echo "NAMESPACE=${{ github.event.client_payload.slash_command.args.arg3 }}" >> $GITHUB_ENV
+          echo "TAG=$(echo ${{ github.event.client_payload.slash_command.args.unnamed.arg1 }} | cut -c16-22)" >> $GITHUB_ENV
+          echo "IMAGE=$IMAGE_BASE:${{ github.event.client_payload.slash_command.args.unnamed.arg1 }}" >> $GITHUB_ENV
+          echo "CLUSTER=${{ github.event.client_payload.slash_command.args.unnamed.arg2 }}" >> $GITHUB_ENV
+          echo "NAMESPACE=${{ github.event.client_payload.slash_command.args.unnamed.arg3 }}" >> $GITHUB_ENV
 
       - name: Using dispatch payload
         uses: actions/github-script@v4
