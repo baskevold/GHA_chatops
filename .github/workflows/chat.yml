@@ -14,12 +14,11 @@ jobs:
       - name: Set variabler for image, namespace og cluster
         shell: bash
         run: |
+          ARGUMENTS = ${{ github.event.client_payload.slash_command.args }}
           echo "TAG=$(echo ARGUMENTS.arg1 | cut -c16-22)" >> $GITHUB_ENV
           echo "IMAGE=$IMAGE_BASE: $ARGUMENTS.arg1" >> $GITHUB_ENV
           echo "CLUSTER=$ARGUMENTS.arg2" >> $GITHUB_ENV
           echo "NAMESPACE=$ARGUMENTS.arg3" >> $GITHUB_ENV
-        env:
-          ARGUMENTS: ${{ github.event.client_payload.slash_command.args }}
 
       - name: Trigging chat back
         uses: peter-evans/create-or-update-comment@v1.4.5
