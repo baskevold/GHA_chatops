@@ -15,10 +15,10 @@ jobs:
         shell: bash
         run: |
           const arguments = github.event.client_payload.slash_command.args
-          echo "TAG=$(echo ${{ arguments.arg1 }} | cut -c16-22)" >> $GITHUB_ENV
-          echo "IMAGE=$IMAGE_BASE:${{ arguments.arg1 }}" >> $GITHUB_ENV
-          echo "CLUSTER=${{ arguments.arg2 }}" >> $GITHUB_ENV
-          echo "NAMESPACE=${{ arguments.arg3 }}" >> $GITHUB_ENV
+          echo "TAG=$(echo arguments.arg1 | cut -c16-22)" >> $GITHUB_ENV
+          echo "IMAGE=$IMAGE_BASE: $arguments.arg1" >> $GITHUB_ENV
+          echo "CLUSTER=$arguments.arg2" >> $GITHUB_ENV
+          echo "NAMESPACE=$arguments.arg3" >> $GITHUB_ENV
 
       - name: Trigging chat back
         uses: peter-evans/create-or-update-comment@v1.4.5
