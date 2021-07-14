@@ -11,29 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set variabler for image, namespace og cluster
-        shell: bash
-        run: |
-          echo "TAG=$(echo ${{ github.event.client_payload.slash_command.args.arg1 }} | cut -c16-22)" >> $GITHUB_ENV
-          echo "IMAGE=$IMAGE_BASE: ${{ github.event.client_payload.slash_command.args.arg1 }}" >> $GITHUB_ENV
-          echo "CLUSTER=${{ github.event.client_payload.slash_command.args.arg2 }}" >> $GITHUB_ENV
-          echo "NAMESPACE=$${{ github.event.client_payload.slash_command.args.arg3 }}" >> $GITHUB_ENV
-
       - name: Trigging chat back
         uses: peter-evans/create-or-update-comment@v1.4.5
         with:
           token: ${{ secrets.GH_ACCESS_TOKEN }}
           issue-number: 1
           body: "Hello world"
-
-      - name: Using dispatch payload
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              owner: context.issue.owner,
-              repo: context.issue.repo,
-              issue_number: ${{ github.event.client_payload.github.payload.issue.number }},
-              body: "${{ env.CLUSTER }}, ${{ env.NAMESPACE }}, ${{ env.TAG }}, ${{ env.IMAGE }}"
-            }
